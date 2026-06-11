@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Simran Kaur | GenAI & Data Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- Animated background -->
+<div class="bg-orbs">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="orb orb4"></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">SK</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-chat-btn" onclick="toggleChat()">💬 Chat with AI</button>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-avatar">SK</div>
+    <div class="hero-badge">Open to Opportunities ✦</div>
+    <h1 class="hero-title">
+      Hi, I'm <span class="gradient-text">Simran Kaur</span>
+    </h1>
+    <div class="hero-roles">
+      <span class="role-prefix">I build </span>
+      <span class="typed-text" id="typed"></span>
+      <span class="cursor">|</span>
+    </div>
+    <p class="hero-desc">
+      Final-year MCA (Data Science) student at LPU — building AI-powered products 
+      that actually work in production. From GenAI applications to data-driven insights.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">2</span><span class="stat-label">Deployed Apps</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">2</span><span class="stat-label">Internships</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">6+</span><span class="stat-label">Tech Stacks</span></div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">About Me</span>
+      <h2>Builder. Analyst. <span class="gradient-text">Problem Solver.</span></h2>
+    </div>
+    <div class="about-grid">
+      <div class="glass-card about-card reveal">
+        <div class="about-icon">🎓</div>
+        <h3>Education</h3>
+        <p><strong>MCA — Data Science</strong><br/>Lovely Professional University<br/><span class="muted">2024 – 2026 (Expected Oct)</span></p>
+        <p style="margin-top:12px"><strong>BCA</strong><br/>Manav Rachna University<br/><span class="muted">Graduated 2023</span></p>
+      </div>
+      <div class="glass-card about-card reveal" style="animation-delay:0.1s">
+        <div class="about-icon">💼</div>
+        <h3>Experience</h3>
+        <p><strong>MIS Executive</strong><br/>Buildicon (CA Firm)<br/><span class="muted">2023 – 2024</span></p>
+        <p style="margin-top:12px"><span class="muted">Handled data reporting, accounts management and operational analytics.</span></p>
+      </div>
+      <div class="glass-card about-card reveal" style="animation-delay:0.2s">
+        <div class="about-icon">🚀</div>
+        <h3>Current Focus</h3>
+        <p>Building production-grade <strong>GenAI applications</strong> with LLM APIs, RAG pipelines, and full-stack deployment.</p>
+        <p style="margin-top:12px">Also exploring <strong>Data Analytics</strong> with SQL, Power BI and Google Cloud.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Skills</span>
+      <h2>What I Work With</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category glass-card reveal">
+        <h3 class="skill-cat-title">🤖 GenAI & LLM</h3>
+        <div class="skill-pills">
+          <span class="pill pill-purple">Groq API</span>
+          <span class="pill pill-purple">LangChain</span>
+          <span class="pill pill-purple">Prompt Engineering</span>
+          <span class="pill pill-purple">RAG</span>
+          <span class="pill pill-purple">LangGraph</span>
+          <span class="pill pill-purple">HuggingFace</span>
+        </div>
+      </div>
+      <div class="skill-category glass-card reveal" style="animation-delay:0.1s">
+        <h3 class="skill-cat-title">🧠 ML & Data Science</h3>
+        <div class="skill-pills">
+          <span class="pill pill-blue">Python</span>
+          <span class="pill pill-blue">Scikit-learn</span>
+          <span class="pill pill-blue">Pandas</span>
+          <span class="pill pill-blue">NumPy</span>
+          <span class="pill pill-blue">Machine Learning</span>
+          <span class="pill pill-blue">EDA</span>
+        </div>
+      </div>
+      <div class="skill-category glass-card reveal" style="animation-delay:0.2s">
+        <h3 class="skill-cat-title">📊 Data & Analytics</h3>
+        <div class="skill-pills">
+          <span class="pill pill-teal">SQL</span>
+          <span class="pill pill-teal">Power BI</span>
+          <span class="pill pill-teal">Excel</span>
+          <span class="pill pill-teal">Data Visualization</span>
+          <span class="pill pill-teal">Google Cloud</span>
+          <span class="pill pill-teal">PostgreSQL</span>
+        </div>
+      </div>
+      <div class="skill-category glass-card reveal" style="animation-delay:0.3s">
+        <h3 class="skill-cat-title">⚡ Full Stack & Dev</h3>
+        <div class="skill-pills">
+          <span class="pill pill-pink">Next.js</span>
+          <span class="pill pill-pink">TypeScript</span>
+          <span class="pill pill-pink">React</span>
+          <span class="pill pill-pink">Flask</span>
+          <span class="pill pill-pink">Node.js</span>
+          <span class="pill pill-pink">Supabase</span>
+          <span class="pill pill-pink">Vercel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Projects</span>
+      <h2>Things I've <span class="gradient-text">Built & Shipped</span></h2>
+    </div>
+    <div class="projects-grid">
+
+      <!-- CareerSync AI -->
+      <div class="project-card glass-card reveal" onclick="expandProject(this)">
+        <div class="project-top">
+          <div class="project-icon">🎯</div>
+          <div class="project-links">
+            <a href="https://career-sync-ai-gamma.vercel.app" target="_blank" onclick="event.stopPropagation()" class="proj-link">Live ↗</a>
+          </div>
+        </div>
+        <h3 class="project-title">CareerSync AI</h3>
+        <p class="project-short">Full-stack AI career prep platform with Mock Interview Simulator, powered by Groq API.</p>
+        <div class="project-detail" style="display:none">
+          <p>A production-grade career preparation platform built with Next.js 14 + TypeScript. Features an AI Interview Simulator with real-time feedback, speech integration, and multi-provider LLM fallback chain (Groq → Gemini → Cerebras) to handle rate limits gracefully.</p>
+          <ul>
+            <li>Direct Groq API integration with engineered prompts</li>
+            <li>Supabase authentication + PostgreSQL backend</li>
+            <li>3-provider fallback chain for 99% uptime</li>
+            <li>Deployed on Vercel with HuggingFace Spaces backend</li>
+          </ul>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Next.js 14</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Groq API</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">LLM</span>
+        </div>
+        <div class="expand-hint">Click to expand ↓</div>
+      </div>
+
+      <!-- SmartQuizzer -->
+      <div class="project-card glass-card reveal" style="animation-delay:0.15s" onclick="expandProject(this)">
+        <div class="project-top">
+          <div class="project-icon">🧠</div>
+          <div class="project-links">
+            <a href="https://smart-quizzer-web.vercel.app" target="_blank" onclick="event.stopPropagation()" class="proj-link">Live ↗</a>
+          </div>
+        </div>
+        <h3 class="project-title">SmartQuizzer</h3>
+        <p class="project-short">Adaptive AI-based quiz platform with gamification, Scholar's Vault card collection & XP system.</p>
+        <div class="project-detail" style="display:none">
+          <p>An intelligent quiz platform built with Flask + PostgreSQL. Features AI-generated questions, a Pokémon-style Scholar's Vault card collection system, XP tracking, and Google OAuth authentication.</p>
+          <ul>
+            <li>AI-generated adaptive questions per topic</li>
+            <li>Gamification — XP, levels, card collection</li>
+            <li>PostgreSQL on Neon with full migration from SQLite</li>
+            <li>HuggingFace Spaces backend + Vercel frontend</li>
+          </ul>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Flask</span>
+          <span class="tag">Python</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">AI</span>
+          <span class="tag">Gamification</span>
+        </div>
+        <div class="expand-hint">Click to expand ↓</div>
+      </div>
+
+      <!-- Agentic Career Scout -->
+      <div class="project-card glass-card reveal" style="animation-delay:0.3s" onclick="expandProject(this)">
+        <div class="project-top">
+          <div class="project-icon">🔍</div>
+        </div>
+        <h3 class="project-title">Agentic Career Scout</h3>
+        <p class="project-short">Resume parser + job matcher using Groq's Llama 3.3-70B. Built during IBM SkillsBuild internship.</p>
+        <div class="project-detail" style="display:none">
+          <p>An agentic AI tool that parses resumes and matches candidates to relevant job listings using Llama 3.3-70B via Groq API. Built and submitted as part of the IBM SkillsBuild AI Strategy internship.</p>
+          <ul>
+            <li>Resume parsing with LLM extraction</li>
+            <li>Job matching via semantic similarity</li>
+            <li>Deployed on HuggingFace Spaces</li>
+          </ul>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Groq</span>
+          <span class="tag">Llama 3.3</span>
+          <span class="tag">Python</span>
+          <span class="tag">HuggingFace</span>
+        </div>
+        <div class="expand-hint">Click to expand ↓</div>
+      </div>
+
+      <!-- SafeNet AI -->
+      <div class="project-card glass-card reveal" style="animation-delay:0.45s" onclick="expandProject(this)">
+        <div class="project-top">
+          <div class="project-icon">🛡️</div>
+        </div>
+        <h3 class="project-title">SafeNet AI</h3>
+        <p class="project-short">Multi-platform scam detection tool built on Relay.app during IBM SkillsBuild internship.</p>
+        <div class="project-detail" style="display:none">
+          <p>A cross-platform scam detection tool that analyzes messages and content for potential fraud patterns. Built using Relay.app as part of the IBM SkillsBuild AI Strategy & Business Intelligence internship.</p>
+          <ul>
+            <li>Multi-platform detection (WhatsApp, email, SMS patterns)</li>
+            <li>AI-powered fraud pattern recognition</li>
+            <li>Built with Relay.app automation platform</li>
+          </ul>
+        </div>
+        <div class="project-tags">
+          <span class="tag">AI</span>
+          <span class="tag">Relay.app</span>
+          <span class="tag">Scam Detection</span>
+          <span class="tag">IBM</span>
+        </div>
+        <div class="expand-hint">Click to expand ↓</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section class="section" id="certifications">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Certifications</span>
+      <h2>Internships & <span class="gradient-text">Credentials</span></h2>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card glass-card reveal">
+        <div class="cert-logo ibm-logo">IBM</div>
+        <div class="cert-info">
+          <h3>IBM SkillsBuild AI Strategy & BI</h3>
+          <p>6-week internship via CSRBOX × AICTE</p>
+          <span class="cert-date">Mar 2026 – Apr 2026</span>
+          <div class="cert-id">ID: 2026AICSIB0865</div>
+        </div>
+      </div>
+      <div class="cert-card glass-card reveal" style="animation-delay:0.15s">
+        <div class="cert-logo infosys-logo">INF</div>
+        <div class="cert-info">
+          <h3>Infosys Springboard Internship 6.0</h3>
+          <p>SmartQuizzer: Adaptive AI-Based Quiz Generator</p>
+          <span class="cert-date">Nov 2025 – Jan 2026</span>
+          <div class="cert-id">Issued: Mar 9, 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Contact</span>
+      <h2>Let's <span class="gradient-text">Connect</span></h2>
+      <p class="section-desc">Open to GenAI Engineer, AI Application Developer & Data Analytics roles.</p>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:kaur.simran1542@gmail.com" class="contact-card glass-card reveal">
+        <span class="contact-icon">📧</span>
+        <span class="contact-label">Email</span>
+        <span class="contact-value">kaur.simran1542@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/simrankaurrr/" target="_blank" class="contact-card glass-card reveal" style="animation-delay:0.1s">
+        <span class="contact-icon">💼</span>
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value">simrankaurrr</span>
+      </a>
+      <a href="https://github.com/Simrannnnnnnnnnnn" target="_blank" class="contact-card glass-card reveal" style="animation-delay:0.2s">
+        <span class="contact-icon">🐙</span>
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value">Simrannnnnnnnnnnn</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- AI Chat Widget -->
+<div class="chat-overlay" id="chatOverlay" onclick="toggleChat()"></div>
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-header">
+    <div class="chat-avatar">SK</div>
+    <div class="chat-info">
+      <h4>Chat with Simran's AI</h4>
+      <span class="chat-status">● Online</span>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg bot-msg">
+      <p>Hi! I'm Simran's AI assistant 👋 Ask me anything about her skills, projects, or experience!</p>
+    </div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Ask about Simran..." onkeydown="if(event.key==='Enter') sendMessage()"/>
+    <button class="chat-send" onclick="sendMessage()">↑</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
