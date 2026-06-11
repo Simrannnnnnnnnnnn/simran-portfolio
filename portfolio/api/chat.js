@@ -1,10 +1,3 @@
-const express = require('express');
-const path = require('path');
-
-const app = express();
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
-
 const SIMRAN_CONTEXT = `You are Simran Kaur's personal AI assistant on her portfolio website. Answer questions about Simran in first person as if you are representing her. Be friendly, professional, and concise (2-4 sentences max per reply).
 
 ABOUT SIMRAN:
@@ -46,7 +39,6 @@ SKILLS:
 INTERNSHIPS:
 1. IBM SkillsBuild AI Strategy & Business Intelligence (Mar 2026 – Apr 2026)
    - 6-week program via CSRBOX × AICTE, Unique ID: 2026AICSIB0865
-   
 2. Infosys Springboard Internship 6.0 (Nov 2025 – Jan 2026)
    - SmartQuizzer: Adaptive AI-Based Quiz Generator project
 
@@ -54,11 +46,19 @@ WORK EXPERIENCE:
 - MIS Executive at Buildicon (CA firm), 2023-2024
 - Handled data reporting, accounts management, and operational analytics
 
-PERSONALITY: She learns best by building real products, is passionate about GenAI applications, and has a strong focus on production deployment rather than just notebooks.
-
 If asked something you don't know about Simran, say you don't have that information but they can reach out directly via email.`;
 
-app.post('/api/chat', async (req, res) => {
+export default async function handler(req, res) {
+  // CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   const { message } = req.body;
   if (!message) return res.status(400).json({ error: 'No message provided' });
 
@@ -82,12 +82,9 @@ app.post('/api/chat', async (req, res) => {
 
     const data = await response.json();
     const reply = data.choices?.[0]?.message?.content || "I couldn't fetch a response right now!";
-    res.json({ reply });
+    res.status(200).json({ reply });
   } catch (err) {
     console.error(err);
     res.status(500).json({ reply: "Something went wrong. Please try again!" });
   }
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Portfolio running on http://localhost:${PORT}`));
+}
