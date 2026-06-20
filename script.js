@@ -1,150 +1,98 @@
-// Typing animation
-const roles = [
-  "GenAI Applications",
-  "AI-Powered Products",
-  "Data Pipelines",
-  "Full-Stack Apps",
-  "ML Solutions"
-];
-let roleIdx = 0, charIdx = 0, deleting = false;
-const typedEl = document.getElementById('typed');
+const SIMRAN_CONTEXT = `You are Simran Kaur's personal AI assistant on her portfolio website. Answer questions about Simran in first person as if you are representing her. Be friendly, professional, and concise (2-4 sentences max per reply).
 
-function typeRole() {
-  const current = roles[roleIdx];
-  if (!deleting) {
-    typedEl.textContent = current.substring(0, charIdx + 1);
-    charIdx++;
-    if (charIdx === current.length) {
-      deleting = true;
-      setTimeout(typeRole, 1800);
-      return;
-    }
-  } else {
-    typedEl.textContent = current.substring(0, charIdx - 1);
-    charIdx--;
-    if (charIdx === 0) {
-      deleting = false;
-      roleIdx = (roleIdx + 1) % roles.length;
-    }
+ABOUT SIMRAN:
+- Final-year MCA (Data Science) student at Lovely Professional University (LPU), graduating October 2026
+- BCA from Manav Rachna University (2023)
+- Target roles: GenAI Engineer, AI Application Developer, Data Analyst
+- Location: Gurugram, India
+- Email: kaur.simran1542@gmail.com
+- LinkedIn: linkedin.com/in/simrankaurrr/
+- GitHub: github.com/Simrannnnnnnnnnnn
+
+PROJECTS:
+1. CareerSync AI (https://career-sync-ai-gamma.vercel.app)
+   - Full-stack AI career prep platform built with Next.js 14 + TypeScript
+   - AI Interview Simulator powered by Groq API with direct LLM integration
+   - 3-provider fallback chain: Groq → Gemini → Cerebras for 99% uptime
+   - Supabase authentication, PostgreSQL backend, deployed on Vercel + HuggingFace Spaces
+
+2. SmartQuizzer (https://smart-quizzer-web.vercel.app)
+   - Adaptive AI-based quiz platform built with Flask + Python
+   - Gamification: XP system, levels, Scholar's Vault card collection (Pokémon-style)
+   - PostgreSQL on Neon, HuggingFace Spaces backend + Vercel frontend
+   - Built during Infosys Springboard Internship 6.0
+
+3. Agentic Career Scout
+   - Resume parser + job matcher using Groq's Llama 3.3-70B
+   - Built during IBM SkillsBuild internship, deployed on HuggingFace Spaces
+
+4. SafeNet AI
+   - Multi-platform scam detection tool built on Relay.app
+   - Built during IBM SkillsBuild internship
+
+SKILLS:
+- GenAI/LLM: Groq API, LangChain, Prompt Engineering, RAG, LangGraph, HuggingFace
+- ML/DS: Python, Scikit-learn, Pandas, NumPy, Machine Learning, EDA
+- Data & Analytics: SQL, Power BI, Excel, Data Visualization, Google Cloud, PostgreSQL
+- Full Stack: Next.js 14, TypeScript, React, Flask, Node.js, Supabase, Vercel
+
+INTERNSHIPS:
+1. IBM SkillsBuild AI Strategy & Business Intelligence (Mar 2026 – Apr 2026)
+   - 6-week program via CSRBOX × AICTE, Unique ID: 2026AICSIB0865
+2. Infosys Springboard Internship 6.0 (Nov 2025 – Jan 2026)
+   - SmartQuizzer: Adaptive AI-Based Quiz Generator project
+
+WORK EXPERIENCE:
+- MIS Executive at Buildicon (CA firm), 2023-2024
+- Handled data reporting, accounts management, and operational analytics
+
+If asked something you don't know about Simran, say you don't have that information but they can reach out directly via email.`;
+
+export default async function handler(req, res) {
+  // CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
-  setTimeout(typeRole, deleting ? 60 : 90);
-}
-typeRole();
 
-// Navbar scroll
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 50);
-});
+  const { message } = req.body;
+  if (!message) return res.status(400).json({ error: 'No message provided' });
 
-// Hamburger
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.querySelector('.nav-links').classList.toggle('open');
-});
-
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Project expand with bounce
-function expandProject(card) {
-  const detail = card.querySelector('.project-detail');
-  const isExpanded = card.classList.contains('expanded');
-  
-  // Close all
-  document.querySelectorAll('.project-card.expanded').forEach(c => {
-    c.classList.remove('expanded');
-    const d = c.querySelector('.project-detail');
-    d.style.display = 'none';
-    d.classList.remove('visible');
-    const hint = c.querySelector('.expand-hint');
-    if (hint) hint.style.display = '';
-  });
-
-  if (!isExpanded) {
-    card.classList.add('expanded');
-    detail.style.display = 'block';
-    requestAnimationFrame(() => detail.classList.add('visible'));
-    const hint = card.querySelector('.expand-hint');
-    if (hint) hint.style.display = 'none';
-    // Smooth scroll into view
-    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+  if (!process.env.GROQ_API_KEY) {
+    return res.status(500).json({ reply: "API key not configured. Please contact Simran!" });
   }
-}
-
-// Chat toggle
-function toggleChat() {
-  const widget = document.getElementById('chatWidget');
-  const overlay = document.getElementById('chatOverlay');
-  widget.classList.toggle('active');
-  overlay.classList.toggle('active');
-  if (widget.classList.contains('active')) {
-    document.getElementById('chatInput').focus();
-  }
-}
-
-// Chat send
-async function sendMessage() {
-  const input = document.getElementById('chatInput');
-  const msg = input.value.trim();
-  if (!msg) return;
-
-  addMessage(msg, 'user');
-  input.value = '';
-  
-  const typing = addTyping();
 
   try {
-    const res = await fetch('/api/chat', {
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: msg })
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.GROQ_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'llama3-8b-8192',
+        messages: [
+          { role: 'system', content: SIMRAN_CONTEXT },
+          { role: 'user', content: message }
+        ],
+        max_tokens: 200,
+        temperature: 0.7
+      })
     });
-    const data = await res.json();
-    typing.remove();
-    addMessage(data.reply || "Sorry, I couldn't get a response right now.", 'bot');
-  } catch {
-    typing.remove();
-    addMessage("Hmm, something went wrong. Please try again!", 'bot');
+
+    const data = await response.json();
+    console.log('Groq response:', JSON.stringify(data));
+    if (data.error) {
+      return res.status(200).json({ reply: `Groq error: ${data.error.message}` });
+    }
+    const reply = data.choices?.[0]?.message?.content || "I couldn't fetch a response right now!";
+    res.status(200).json({ reply });
+  } catch (err) {
+    console.error('Groq API error:', err);
+    res.status(500).json({ reply: `Error: ${err.message}` });
   }
 }
-
-function addMessage(text, type) {
-  const msgs = document.getElementById('chatMessages');
-  const div = document.createElement('div');
-  div.className = `msg ${type === 'user' ? 'user-msg' : 'bot-msg'}`;
-  div.innerHTML = `<p>${text}</p>`;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-  return div;
-}
-
-function addTyping() {
-  const msgs = document.getElementById('chatMessages');
-  const div = document.createElement('div');
-  div.className = 'msg bot-msg typing-msg';
-  div.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-  return div;
-}
-
-// Smooth active nav highlight
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
-  });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === `#${current}` 
-      ? 'var(--text)' : '';
-  });
-});
